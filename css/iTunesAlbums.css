@@ -13,6 +13,25 @@ footer {
   padding: 30px 0;
 }
 
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.p,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+	margin: 0;
+	line-height: 1;
+  /*line-height: 0.2;*/
+}
+
 .container {
 	padding-left: 0px;
 	padding-right: 0px;
@@ -41,11 +60,9 @@ footer {
 
 .list-content .album-container-selected {
 	width: 100%;
-	margin-left:auto;
-	margin-right:auto;
 }
 
-.img-album {
+.list-content .img-album {
   display: inline-block;
   height: auto;
   background-color: #F7F6F8;
@@ -59,6 +76,17 @@ footer {
   margin-bottom:7px;
 }
 
+.list-content .album-name {
+	text-overflow: ellipsis;
+	overflow:hidden;
+	white-space : nowrap;
+}
+
+.list-content .artist-name {
+	text-overflow: ellipsis;
+	overflow:hidden;
+	white-space : nowrap;
+}
 
 .album-plate {
   display: block;
@@ -148,23 +176,7 @@ footer {
 	padding-bottom: 10px;
 }
 
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-	margin: 0;
-	line-height: 1;
-  /*line-height: 0.2;*/
-}
+
 
 /*
  * Off Canvas
