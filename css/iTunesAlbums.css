@@ -60,16 +60,16 @@ h6,
 	margin-left:auto;
 	margin-right:auto;
 	
-	-webkit-transition: width 0.1s ease-in-out, padding-top 0.1s ease;  
-  -moz-transition: width 0.1s ease-in-out, padding-top 0.1s ease;  
-  -o-transition: width 0.1s ease-in-out, padding-top 0.1s ease;  
-  transition: width 0.1s ease-in-out, padding-top 0.1s ease; 
+	-webkit-transition: width 0.2s ease, padding-top 0.12s ease;  
+  -moz-transition: width 0.2s ease, padding-top 0.2s ease;  
+  -o-transition: width 0.2s ease, padding-top 0.2s ease;  
+  transition: width 0.2s ease, padding-top 0.2s ease; 
 }
 
-.album-container:hover {
+/*.album-container:hover {
   width: 100%;
   padding-top:0px;
-}
+}*/
 
 .album-container.selected {
   width: 100%;
