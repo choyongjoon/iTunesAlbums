@@ -13,14 +13,15 @@ $(document).ready(function() {
   	if(selectedAlbumContainer!=undefined){
 	  	if(selectedAlbumContainer.is(albumContainer)){
 	  		unselectAlbum(albumContainer);
-	  		$(".album-plate").addClass("hidden");
+	  		hideAlbumPlate();
 	  	}else{
 				unselectAlbum(selectedAlbumContainer);
 				selectAlbum(albumContainer);
+				changeAlbumPlate();
 	  	}
   	}else{
     	selectAlbum(albumContainer);
-    	$(".album-plate").removeClass("hidden");
+    	showAlbumPlate();
 		}
   });
   
@@ -39,6 +40,26 @@ $(document).ready(function() {
 	  albumContainer.removeClass("selected"); // reduce album image
 		albumContainer.find(".artist-name").removeClass("hidden"); // show artist name
 		selectedAlbumContainer = undefined;
+  };
+  
+  function showAlbumPlate(){
+	  albumPlate = $(".album-plate");
+  	albumPlate.removeClass("hidden");
+  	albumPlate.find(".album-plate-arrow").css("left", function(){
+    	return albumContainer.offset().left + albumContainer.width()/2 - 17;
+  	});
+  };
+  
+  function hideAlbumPlate(){
+	  albumPlate = $(".album-plate");
+    albumPlate.addClass("hidden");
+  };
+  
+  function changeAlbumPlate(){
+	  albumPlate = $(".album-plate");
+  	albumPlate.find(".album-plate-arrow").css("left", function(){
+    	return albumContainer.offset().left + albumContainer.width()/2 - 17;
+  	});
   };
   
 });  

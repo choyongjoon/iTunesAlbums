@@ -60,7 +60,7 @@ h6,
 	margin-left:auto;
 	margin-right:auto;
 	
-	-webkit-transition: width 0.2s ease, padding-top 0.12s ease;  
+	-webkit-transition: width 0.2s ease, padding-top 0.2s ease;  
   -moz-transition: width 0.2s ease, padding-top 0.2s ease;  
   -o-transition: width 0.2s ease, padding-top 0.2s ease;  
   transition: width 0.2s ease, padding-top 0.2s ease; 
@@ -78,7 +78,6 @@ h6,
 
 .img-album {
   display: inline-block;
-  height: auto;
   margin-bottom:7px;
   
   background-color: #F7F6F8;
@@ -93,6 +92,7 @@ h6,
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space : nowrap;
+  padding-bottom: 1px;
 }
 
 /* album-plate
@@ -146,7 +146,7 @@ h6,
 }
 
 .two-column {
-	width:400px;
+	width:320px;
 	-webkit-column-count: 2;
   -moz-column-count: 2;
   column-count: 2;
