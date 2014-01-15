@@ -27,7 +27,7 @@ $(document).ready(function() {
   
   $(".close-button").click(function() {
   	unselectAlbum(selectedAlbumContainer);
-  	$(".album-plate").toggleClass("hidden");
+		hideAlbumPlate();
   });
   
   function selectAlbum(albumContainer){
@@ -42,17 +42,21 @@ $(document).ready(function() {
 		selectedAlbumContainer = undefined;
   };
   
+  
   function showAlbumPlate(){
 	  albumPlate = $(".album-plate");
-  	albumPlate.removeClass("hidden");
-  	albumPlate.find(".album-plate-arrow").css("left", function(){
+  	$(".album-plate-arrow").css("left", function(){
     	return albumContainer.offset().left + albumContainer.width()/2 - 17;
   	});
+  	$(".album-plate-arrow").addClass("in");
+  	$(".album-plate-arrow-cover").addClass("in");
+  	albumPlate.addClass("in");
   };
-  
   function hideAlbumPlate(){
 	  albumPlate = $(".album-plate");
-    albumPlate.addClass("hidden");
+	  $(".album-plate-arrow").removeClass("in");
+  	$(".album-plate-arrow-cover").removeClass("in");
+    albumPlate.removeClass("in");
   };
   
   function changeAlbumPlate(){
@@ -62,4 +66,4 @@ $(document).ready(function() {
   	});
   };
   
-});  
+});
