@@ -31,14 +31,23 @@ $(document).ready(function() {
   });
   
   function selectAlbum(albumContainer){
+  	albumContainer.css("padding-top", function(){
+  		console.log(20 - albumContainer.width()/2 * 0.14 / 0.86);
+			return (20 - albumContainer.width()/2 * 0.14 / 0.86);
+		});
+		 //var height = albumContainer[0].offsetHeight; // Forces a repaint in most browsers (apparently).
 		albumContainer.addClass("selected"); // enlarge album image
-		albumContainer.find(".artist-name").addClass("hidden"); // hide artist name
+		
+		albumContainer.find(".artist-name").addClass("transparent"); // hide artist name
 		selectedAlbumContainer = albumContainer;
   };
   
   function unselectAlbum(albumContainer){
+  	albumContainer.css("padding-top", function(){
+			return 20;
+		});
 	  albumContainer.removeClass("selected"); // reduce album image
-		albumContainer.find(".artist-name").removeClass("hidden"); // show artist name
+		albumContainer.find(".artist-name").removeClass("transparent"); // show artist name
 		selectedAlbumContainer = undefined;
   };
   

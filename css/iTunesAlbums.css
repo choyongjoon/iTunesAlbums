@@ -31,9 +31,13 @@ h6,
 	line-height: 1;
 }
 
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
 .container { /* use full width */
-	padding-left: 0px;
-	padding-right: 0px;
+
 }
 
 /* list-header
@@ -51,19 +55,21 @@ h6,
 }
 
 .album-row {
-	padding-top: 20px;
+	padding-top: 0px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .album-container {
 	width: 86%;
-	padding-top: 14px;
+	padding-top: 20px;
 	margin-left:auto;
 	margin-right:auto;
 	
-	-webkit-transition: width 0.2s ease, padding-top 0.2s ease;  
-  -moz-transition: width 0.2s ease, padding-top 0.2s ease;  
-  -o-transition: width 0.2s ease, padding-top 0.2s ease;  
-  transition: width 0.2s ease, padding-top 0.2s ease; 
+	-webkit-transition: width 0.25s ease-out, padding-top 0.25s ease-out;  
+  -moz-transition: width 0.25s ease-out, padding-top 0.25s ease-out;  
+  -o-transition: width 0.25s ease-out, padding-top 0.25s ease-out;  
+  transition: width 0.25s ease-out, padding-top 0.25s ease-out; 
 }
 
 /*.album-container:hover {
@@ -73,35 +79,50 @@ h6,
 
 .album-container.selected {
   width: 100%;
-  padding-top:0px;
 }
 
 .img-album {
   display: inline-block;
-  margin-bottom:7px;
+  margin-bottom:5px;
   
   background-color: #F7F6F8;
   border: 1px solid #777777;
   box-shadow: 0 3px 7px #888;
   
-  -webkit-transition: all 0.2s ease-in-out;
-          transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.25s ease-out;
+          transition: all 0.25s ease-out;
 }
 
-.album-name, .artist-name {
+.album-name{
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space : nowrap;
-  padding-bottom: 1px;
+	padding-bottom: 1px;
 }
 
+.artist-name {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space : nowrap;
+	margin-bottom: 10px;
+	z-index: 5;
+	position: relative;
+	opacity: 1;
+	-webkit-transition: opacity 0.25s ease-out;
+	      transition: opacity 0.25s ease-out;
+}
+
+.artist-name.transparent {
+	opacity: 0;
+	margin-bottom: -18px;
+}
 /* album-plate
 ================================= */
 .album-plate {
   position: relative;
   display: blcok;
   z-index:0;
-  top: -15px;
+  margin-top: 0px;
   text-align: left;
   white-space: normal;
   
@@ -111,8 +132,8 @@ h6,
   
   max-height:0;
   overflow:hidden;
-  -webkit-transition: max-height 0.35s ease;
-          transition: max-height 0.35s ease;
+  -webkit-transition: max-height 0.25s ease-out;
+          transition: max-height 0.25s ease-out;
 }
 
 .album-plate.in {
@@ -131,8 +152,9 @@ h6,
 .album-plate-arrow{
   content: '';
 	position: relative;
-	top: -3px; left: 124px;
+	top: -12px; left: 124px;
   height: 24px; width: 24px;
+  margin-bottom: -24px;
   z-index: 4;
   
   background: #8BBB7A;
@@ -157,8 +179,11 @@ h6,
   z-index: 6;
   background-color:#F9F8F9;
   opacity:1;
-	-webkit-transition: top 0.35s ease, left 0.35s ease, opacity 0.35s step-end; 
-	        transition: top 0.35s ease, left 0.35s ease, opacity 0.35s step-end; 
+  
+	-webkit-transition: top 0.25s ease-out, left 0.25s ease-out, 
+											opacity 0.25s ease-in;
+	        transition: top 0.25s ease-out, left 0.25s ease-out, 
+	        						opacity 0.25s ease-in;
 }
 
 .album-plate-arrow-cover.in{
@@ -167,9 +192,6 @@ h6,
   border-top: 1px solid #777777;
   border-left: 1px solid #777777;
   top: 217px; left: 217px;
-  
-	-webkit-transition: top 0.35s ease, left 0.35s ease, opacity 0.35s step-start; 
-          transition: top 0.35s ease, left 0.35s ease, opacity 0.35s step-start; 
 }
 
 .album-plate-content {
