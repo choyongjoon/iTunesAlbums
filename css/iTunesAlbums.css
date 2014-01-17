@@ -66,9 +66,6 @@ h6,
 	margin-left:auto;
 	margin-right:auto;
 	
-	-webkit-transition: width 0.25s ease-out, padding-top 0.25s ease-out;  
-  -moz-transition: width 0.25s ease-out, padding-top 0.25s ease-out;  
-  -o-transition: width 0.25s ease-out, padding-top 0.25s ease-out;  
   transition: width 0.25s ease-out, padding-top 0.25s ease-out; 
 }
 
@@ -89,8 +86,7 @@ h6,
   border: 1px solid #777777;
   box-shadow: 0 3px 7px #888;
   
-  -webkit-transition: all 0.25s ease-out;
-          transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
 }
 
 .album-name{
@@ -108,8 +104,8 @@ h6,
 	z-index: 5;
 	position: relative;
 	opacity: 1;
-	-webkit-transition: opacity 0.25s ease-out;
-	      transition: opacity 0.25s ease-out;
+
+	transition: opacity 0.25s ease-out;
 }
 
 .artist-name.transparent {
@@ -129,17 +125,22 @@ h6,
   background-color: #8BBB7A;
   
   box-shadow: inset 0px 4px 6px -6px rgba(0, 0, 0, .5); 
+  border: 0px solid #777777;
   
-  max-height:0;
+  max-height:0px;
   overflow:hidden;
-  -webkit-transition: max-height 0.25s ease-out;
-          transition: max-height 0.25s ease-out;
+  transform: translate3d(0,0,0); /* trigger HW acceleration */
+
+  transition: border 0.01s ease-out 0.25s, max-height 0.25s ease-out;
 }
 
 .album-plate.in {
   display: block;
-  max-height: 310px;
   border: 1px solid #777777;
+  max-height: 310px;
+
+  transition: max-height 0.25s ease-out, border 0.01s ease-out;
+
 }
 
 .close-button{
@@ -158,40 +159,46 @@ h6,
   z-index: 4;
   
   background: #8BBB7A;
+	border-top: 1px solid #8BBB7A;
+  border-left: 1px solid #8BBB7A;
+  box-shadow: inset 4px 4px 8px -6px rgba(0, 0, 0, .5);
   
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
+  
+  transition: border 0.01s ease-out 0.25s;
 }
 
 .album-plate-arrow.in{
-	box-shadow: inset 4px 4px 8px -6px rgba(0, 0, 0, .5);
-  border-top: 1px solid #777777;
+	border-top: 1px solid #777777;
   border-left: 1px solid #777777;
+  
+  transition: border 0.01s ease-out;
 }
 
 .album-plate-arrow-cover{
   content: '';
 	position: absolute;
-	top: -1px; left: -1px;
+	top: -2px; left: -2px;
   height: 0px; width: 0px;
   width:26px;
   height:26px;
   z-index: 6;
   background-color:#F9F8F9;
-  opacity:1;
+  opacity: 1;
+	border-top: 1px solid #F9F8F9;
+  border-left: 1px solid #F9F8F9;
   
-	-webkit-transition: top 0.25s ease-out, left 0.25s ease-out, 
-											opacity 0.25s ease-in;
-	        transition: top 0.25s ease-out, left 0.25s ease-out, 
-	        						opacity 0.25s ease-in;
+	transition: opacity 0.01s ease-out, top 0.25s ease-out, left 0.25s ease-out, border 0.01s ease-out 0.25s;
 }
 
 .album-plate-arrow-cover.in{
-  /*display:none;*/
-  opacity:0;
+	opacity: 0;
   border-top: 1px solid #777777;
   border-left: 1px solid #777777;
   top: 217px; left: 217px;
+  
+	transition: top 0.25s ease-out, left 0.25s ease-out, border 0.01s ease-out, opacity 0.01s ease-out 0.25s;
 }
 
 .album-plate-content {
