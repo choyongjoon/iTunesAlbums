@@ -13,15 +13,15 @@ $(document).ready(function() {
   	if(selectedAlbumContainer!=undefined){
 	  	if(selectedAlbumContainer.is(albumContainer)){
 	  		unselectAlbum(albumContainer);
-	  		hideAlbumPlate();
+	  		hideAlbumPlate(albumContainer);
 	  	}else{
 				unselectAlbum(selectedAlbumContainer);
 				selectAlbum(albumContainer);
-				changeAlbumPlate();
+				changeAlbumPlate(albumContainer);
 	  	}
   	}else{
     	selectAlbum(albumContainer);
-    	showAlbumPlate();
+    	showAlbumPlate(albumContainer);
 		}
   });
   
@@ -52,27 +52,37 @@ $(document).ready(function() {
   };
   
   
-  function showAlbumPlate(){
+  function showAlbumPlate(albumContainer){
 	  albumPlate = $(".album-plate");
   	$(".album-plate-arrow").css("left", function(){
-    	return albumContainer.offset().left + albumContainer.width()/2 - 17;
+    	return albumContainer.offset().left + albumContainer.width()/2 - 10;
   	});
-  	$(".album-plate-arrow").addClass("in");
-  	$(".album-plate-arrow-cover").addClass("in");
-  	albumPlate.addClass("in");
+  	$(".album-plate-arrow").removeClass("duck");
+  	$(".album-plate-arrow").addClass("open");
+  	$(".album-plate-arrow-cover").addClass("open");
+  	albumPlate.addClass("open");
   };
-  function hideAlbumPlate(){
+  function hideAlbumPlate(albumContainer){
 	  albumPlate = $(".album-plate");
-	  $(".album-plate-arrow").removeClass("in");
-  	$(".album-plate-arrow-cover").removeClass("in");
-    albumPlate.removeClass("in");
+	  $(".album-plate-arrow").removeClass("open");
+  	$(".album-plate-arrow-cover").removeClass("open");
+    albumPlate.removeClass("open");
   };
   
-  function changeAlbumPlate(){
+  function changeAlbumPlate(albumContainer){
 	  albumPlate = $(".album-plate");
-  	albumPlate.find(".album-plate-arrow").css("left", function(){
-    	return albumContainer.offset().left + albumContainer.width()/2 - 17;
-  	});
+  	/*$(".album-plate-arrow").css("left", function(){
+    	return albumContainer.offset().left + albumContainer.width()/2 - 10;
+  	});*/
+  	$(".album-plate-arrow").addClass("duck");
   };
   
+  $( window ).resize(function() {
+  	// repoisition the album-plate-arrow
+		$(".album-plate-arrow").css("left", function(){
+			if(selectedAlbumContainer!=undefined){
+    		return selectedAlbumContainer.offset().left + selectedAlbumContainer.width()/2 - 10;
+    	}
+  	});
+	});
 });
