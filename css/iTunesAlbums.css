@@ -7,7 +7,7 @@ body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 body {
-  padding-top: 70px;
+  padding-top: 108px;
 }
 footer {
   padding: 30px 0;
@@ -36,15 +36,26 @@ h6,
     padding-left: 5px;
 }
 
+h3, .h3 {
+	font-size: 20px;
+}
+
 /* list-header
 ================================= */
 .list-header {
 	background-color: #FDFDFD;
 	border-bottom: 2px solid #ADACAD;
-	padding-bottom: 10px;
+	padding-top: 6px;
+	padding-bottom: 8px;
 	padding-left: 20px;
 	padding-right: 20px;
 }
+.list-header-fixed-top {
+	position: fixed;
+	top: 51px;
+right: 0;
+left: 0;
+z-index: 1030;}
 
 /* list-content
 ================================= */
@@ -211,10 +222,10 @@ h6,
 
 .album-plate-left-text {
 	margin-left: 52px;
+	width:320px;
 }
 
 .two-column {
-	width:320px;
 	-webkit-column-count: 2;
   -moz-column-count: 2;
   column-count: 2;
