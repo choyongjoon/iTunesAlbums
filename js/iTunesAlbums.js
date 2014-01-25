@@ -57,24 +57,32 @@ $(document).ready(function() {
   	$(".album-plate-arrow").css("left", function(){
     	return albumContainer.offset().left + albumContainer.width()/2 - 10;
   	});
-  	$(".album-plate-arrow").removeClass("duck");
-  	$(".album-plate-arrow").addClass("open");
-  	$(".album-plate-arrow-cover").addClass("open");
+  	arrow = $(".album-plate-arrow");
+  	arrowCover = $(".album-plate-arrow").find(".album-plate-arrow-cover");
+  	arrow.removeClass("duck");
+  	arrow.addClass("open");
+  	arrowCover.addClass("open");
   	albumPlate.addClass("open");
   };
   function hideAlbumPlate(albumContainer){
 	  albumPlate = $(".album-plate");
-	  $(".album-plate-arrow").removeClass("open");
-  	$(".album-plate-arrow-cover").removeClass("open");
+	  arrow = $(".album-plate-arrow");
+  	arrowCover = $(".album-plate-arrow").find(".album-plate-arrow-cover");
+	  arrow.removeClass("open");
+  	arrowCover.removeClass("open");
     albumPlate.removeClass("open");
   };
   
   function changeAlbumPlate(albumContainer){
-	  albumPlate = $(".album-plate");
-  	/*$(".album-plate-arrow").css("left", function(){
+  	currentArrow = $(".album-plate-arrow");
+  	altArrow = $(".album-plate-arrow-alt");
+  	altArrow.css("left", function(){
     	return albumContainer.offset().left + albumContainer.width()/2 - 10;
-  	});*/
-  	$(".album-plate-arrow").addClass("duck");
+  	});
+  	altArrow.removeClass("duck");
+  	currentArrow.addClass("duck");
+  	currentArrow.toggleClass("album-plate-arrow album-plate-arrow-alt");
+  	altArrow.toggleClass("album-plate-arrow-alt album-plate-arrow");	
   };
   
   $( window ).resize(function() {
