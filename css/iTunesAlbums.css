@@ -32,8 +32,8 @@ h6,
 }
 
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
-    padding-right: 5px;
-    padding-left: 5px;
+    padding-right: 11px;
+    padding-left: 11px;
 }
 
 h3, .h3 {
@@ -53,9 +53,10 @@ h3, .h3 {
 .list-header-fixed-top {
 	position: fixed;
 	top: 51px;
-right: 0;
-left: 0;
-z-index: 1030;}
+	right: 0;
+	left: 0;
+	z-index: 1030;
+}
 
 /* list-content
 ================================= */
@@ -65,8 +66,8 @@ z-index: 1030;}
 
 .album-row {
 	padding-top: 0px;
-	padding-left: 40px;
-	padding-right: 40px;
+	padding-left: 25px;
+	padding-right: 25px;
 	overflow: hidden;
 }
 
@@ -76,11 +77,12 @@ z-index: 1030;}
 	margin-left:auto;
 	margin-right:auto;
 	
-  transition: width 0.25s ease-out, padding-top 0.25s ease-out; 
+  transition: width 0.25s ease-out, padding-top 0.25s ease-out, margin-bottom 0.25s ease-out; 
 }
 
 .album-container.selected {
   width: 100%;
+  margin-bottom: -18px;
 }
 
 .img-album {
@@ -110,15 +112,20 @@ z-index: 1030;}
 	position: relative;
 	opacity: 1;
 
-	transition: opacity 0.25s ease-out, margin-bottom 0.25s ease-out;
+	transition: opacity 0.25s ease-out;
 }
 
 .artist-name.transparent {
 	opacity: 0;
-	margin-bottom: -18px;
 }
 /* album-plate
 ================================= */
+
+.album-plate-container {
+  margin-left:-11px;
+  margin-right:-11px;
+}
+
 .album-plate {
   position: relative;
   display: blcok;
@@ -154,6 +161,9 @@ z-index: 1030;}
 	margin-left: 5px;
   font-size: 18px;
 }
+
+/* album-plate-arrow
+================================= */
 
 .album-plate-arrow,
 .album-plate-arrow-alt{
@@ -218,6 +228,9 @@ z-index: 1030;}
   
 	transition: top 0.25s ease-out, left 0.25s ease-out, border 0.01s ease-out, opacity 0.01s ease-out 0.25s;
 }
+
+/* album-plate-content
+================================= */
 
 .album-plate-content {
   z-index: 0;

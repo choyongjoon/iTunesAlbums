@@ -5,9 +5,10 @@
 $(document).ready(function() {
 
 	var selectedAlbumContainer;
-
+	
+	// on click function
   $(".img-album").click(function() { // when album image is selected
-  	albumContainer = $(this).parent();
+  	var albumContainer = $(this).parent();
   	//console.log(selectedAlbumContainer);
   	//console.log(albumContainer);
   	if(selectedAlbumContainer!=undefined){
@@ -30,14 +31,15 @@ $(document).ready(function() {
 		hideAlbumPlate();
   });
   
+  // album size control at select/unselect
+  
   function selectAlbum(albumContainer){
   	albumContainer.css("padding-top", function(){
-  		console.log(20 - albumContainer.width()/2 * 0.14 / 0.86);
+  		//console.log(20 - albumContainer.width()/2 * 0.14 / 0.86);
 			return (20 - albumContainer.width()/2 * 0.14 / 0.86);
 		});
-		 //var height = albumContainer[0].offsetHeight; // Forces a repaint in most browsers (apparently).
+		//var height = albumContainer[0].offsetHeight; // Forces a repaint in most browsers (apparently).
 		albumContainer.addClass("selected"); // enlarge album image
-		
 		albumContainer.find(".artist-name").addClass("transparent"); // hide artist name
 		selectedAlbumContainer = albumContainer;
   };
@@ -51,40 +53,69 @@ $(document).ready(function() {
 		selectedAlbumContainer = undefined;
   };
   
+  // album plate control
   
   function showAlbumPlate(albumContainer){
-	  albumPlate = $(".album-plate");
-  	$(".album-plate-arrow").css("left", function(){
+	  var albumPlate = $(".album-plate");
+	  var arrow = $(".album-plate-arrow");
+  	var arrowCover = $(".album-plate-arrow").find(".album-plate-arrow-cover");
+  	
+  	moveAlbumPlate(albumContainer);
+  	
+  	arrow.css("left", function(){
     	return albumContainer.offset().left + albumContainer.width()/2 - 10;
   	});
-  	arrow = $(".album-plate-arrow");
-  	arrowCover = $(".album-plate-arrow").find(".album-plate-arrow-cover");
   	arrow.removeClass("duck");
   	arrow.addClass("open");
   	arrowCover.addClass("open");
   	albumPlate.addClass("open");
   };
+  
   function hideAlbumPlate(albumContainer){
-	  albumPlate = $(".album-plate");
-	  arrow = $(".album-plate-arrow");
-  	arrowCover = $(".album-plate-arrow").find(".album-plate-arrow-cover");
+	  var albumPlate = $(".album-plate");
+	  var arrow = $(".album-plate-arrow");
+  	var arrowCover = $(".album-plate-arrow").find(".album-plate-arrow-cover");
+  	
 	  arrow.removeClass("open");
   	arrowCover.removeClass("open");
     albumPlate.removeClass("open");
   };
   
   function changeAlbumPlate(albumContainer){
-  	currentArrow = $(".album-plate-arrow");
-  	altArrow = $(".album-plate-arrow-alt");
+  	var currentArrow = $(".album-plate-arrow");
+  	var altArrow = $(".album-plate-arrow-alt");
+  	
+  	// if selectedAlbumContainer and albumContainer are in a same row;
+  	
   	altArrow.css("left", function(){
     	return albumContainer.offset().left + albumContainer.width()/2 - 10;
   	});
   	altArrow.removeClass("duck");
   	currentArrow.addClass("duck");
   	currentArrow.toggleClass("album-plate-arrow album-plate-arrow-alt");
-  	altArrow.toggleClass("album-plate-arrow-alt album-plate-arrow");	
+  	altArrow.toggleClass("album-plate-arrow-alt album-plate-arrow");
+  	
+  	// else if selectedAlbumContainer and albumContainer are in different rows;
+  	// TODO
+  	
   };
   
+  function moveAlbumPlate(albumContainer){
+	  var albumPlateContainer = $(".album-plate-container");
+	  var albumRow = $(".album-row");
+	  
+	  // reposition the album plate after the selected row
+  	var rowId = getRowId(albumContainer);
+  	albumPlateContainer.remove();
+  	var rowEnd = albumRow.children()[((rowId+1) * numAlbumsInRow() * 3/2)-1]; // 3/2: consider clearfix
+  	if(rowEnd==undefined){
+	  	albumPlateContainer.appendTo(albumRow);
+  	}
+		albumPlateContainer.insertAfter(rowEnd);
+  }
+  
+  
+  // on resize 
   $( window ).resize(function() {
   	// repoisition the album-plate-arrow
 		$(".album-plate-arrow").css("left", function(){
@@ -92,5 +123,28 @@ $(document).ready(function() {
     		return selectedAlbumContainer.offset().left + selectedAlbumContainer.width()/2 - 10;
     	}
   	});
+  	
+  	moveAlbumPlate(selectedAlbumContainer);
 	});
+	
+	function numAlbumsInRow(){
+		var width = $( window ).width();
+		if(width < 768){ 				// Extra small devices Phones (<768px)
+			return 2;
+		}else if(width < 992){ 	// Small devices Tablets (≥768px)
+			return 4;
+		}else if(width < 1200){	// Medium devices Desktops (≥992px)
+			return 6;
+		}else{									// Large devices Desktops (≥1200px)
+			return 6;
+		}
+	}
+	
+	function getRowId(albumContainer){
+		var numInRow = numAlbumsInRow();
+  	//console.log("# albums in a row: " + numAlbumsInRow());
+  	var selectedRow = parseInt(albumContainer.parent().index() / (numInRow * 3/2)); // 3/2: consider clearfix
+  	//console.log("selected row: " + selectedRow);
+  	return selectedRow;
+	}
 });
