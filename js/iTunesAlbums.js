@@ -1,11 +1,10 @@
 /*!
  * iTunesAlbums.js
  */
+var selectedAlbumContainer;
+var albumColors;
 
 $(document).ready(function() {
-
-	var selectedAlbumContainer;
-	
 	// on click function
   $(".img-album").click(function() { // when album image is selected
   	var albumContainer = $(this).parent();
@@ -31,6 +30,21 @@ $(document).ready(function() {
 		hideAlbumPlate();
   });
   
+  var numAlbums = $(".img-album").length; 
+  albumColors = new Array();
+  for(var i=0; i<numAlbums; i++){
+  	var imgSrc = $(".img-album")[i].src;
+	  ImageAnalyzer(imgSrc, function(bgColor, primaryColor, secondaryColor, detailColor) {
+	  	var colors = new Object();
+      colors.bgColor = bgColor;
+      colors.primaryColor = primaryColor;
+      colors.secondaryColor = secondaryColor;
+      colors.detailColor = detailColor;
+      albumColors.push(colors);
+		}); 
+  }
+});
+
   // album size control at select/unselect
   
   function selectAlbum(albumContainer){
@@ -62,6 +76,8 @@ $(document).ready(function() {
   	
   	moveAlbumPlate(albumContainer);
   	
+  	paintAlbumPlate(albumContainer);
+  	
   	arrow.css("left", function(){
     	return albumContainer.offset().left + albumContainer.width()/2 - 10;
   	});
@@ -86,7 +102,7 @@ $(document).ready(function() {
   	var altArrow = $(".album-plate-arrow-alt");
   	
   	// if selectedAlbumContainer and albumContainer are in a same row;
-  	
+  	paintAlbumPlate(albumContainer);
   	altArrow.css("left", function(){
     	return albumContainer.offset().left + albumContainer.width()/2 - 10;
   	});
@@ -114,6 +130,28 @@ $(document).ready(function() {
 		albumPlateContainer.insertAfter(rowEnd);
   }
   
+  function paintAlbumPlate(albumContainer){
+  	var image = albumContainer.find(".img-album")
+  	var imageSrc = image.attr("src");
+    var albumPlate = $(".album-plate");
+    var id = getId(albumContainer);
+    
+    // change text
+    albumPlate.find(".album-name").text(albumContainer.find(".album-name").text());
+		albumPlate.find(".artist-name").text(albumContainer.find(".artist-name").text());
+    
+    // chnage image
+  	albumPlate.find(".album-plate-img").attr("src", image.attr("src"));
+    
+    // chnage colors
+    albumPlate.css("background-color", 'rgb(' + albumColors[id].bgColor + ')');
+  	$(".album-plate-arrow").css("background-color", 'rgb(' + albumColors[id].bgColor + ')');
+  	$(".album-plate-arrow-alt").css("background-color", 'rgb(' + albumColors[id].bgColor + ')');
+  	albumPlate.find(".album-plate-img-wrap").css("box-shadow", "inset 16px 16px 25px " + 'rgb(' + albumColors[id].bgColor + ')');
+  	
+  	albumPlate.find(".first-color").css("color",'rgb(' + albumColors[id].secondaryColor + ')');
+  	albumPlate.find(".second-color").css("color", 'rgb(' + albumColors[id].primaryColor + ')');
+  }
   
   // on resize 
   $( window ).resize(function() {
@@ -123,8 +161,9 @@ $(document).ready(function() {
     		return selectedAlbumContainer.offset().left + selectedAlbumContainer.width()/2 - 10;
     	}
   	});
-  	
-  	moveAlbumPlate(selectedAlbumContainer);
+  	if(selectedAlbumContainer!=undefined){
+  		moveAlbumPlate(selectedAlbumContainer);
+  	}
 	});
 	
 	function numAlbumsInRow(){
@@ -147,4 +186,7 @@ $(document).ready(function() {
   	//console.log("selected row: " + selectedRow);
   	return selectedRow;
 	}
-});
+	
+	function getId(albumContainer){
+		return parseInt(albumContainer.parent().index() / 3) * 2 + albumContainer.parent().index() % 3;
+	}
