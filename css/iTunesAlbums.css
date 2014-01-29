@@ -85,13 +85,13 @@ h3, .h3 {
 	padding-top: 20px;
 	margin-left:auto;
 	margin-right:auto;
+	overflow-y:hidden;
 	
   transition: width 0.25s ease-out, padding-top 0.25s ease-out, margin-bottom 0.25s ease-out; 
 }
 
 .album-container.selected {
   width: 100%;
-  margin-bottom: -18px;
 }
 
 .img-album {
