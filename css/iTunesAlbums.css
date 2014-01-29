@@ -7,10 +7,11 @@ body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 body {
-  padding-top: 108px;
+  padding-top: 0px;
+  background-color: #F9F8F9;
 }
 footer {
-  padding: 30px 0;
+  /*padding: 30px 0;*/
 }
 
 p,
@@ -40,6 +41,15 @@ h3, .h3 {
 	font-size: 20px;
 }
 
+.container {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.navbar {
+	margin-bottom:0px;
+}
+
 /* list-header
 ================================= */
 .list-header {
@@ -49,7 +59,6 @@ h3, .h3 {
 	padding-bottom: 8px;
 	padding-left: 20px;
 	padding-right: 20px;
-	max-width: 1170px;
 }
 .list-header-fixed-top {
 	position: fixed;
@@ -63,14 +72,12 @@ h3, .h3 {
 ================================= */
 .list-content {
 	background-color: #F9F8F9;
-	max-width: 1170px;
 }
 
 .album-row {
 	padding-top: 0px;
-	padding-left: 25px;
-	padding-right: 25px;
-	overflow: hidden;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 .album-container {
@@ -124,13 +131,13 @@ h3, .h3 {
 ================================= */
 
 .album-plate-container {
-  margin-left:-11px;
-  margin-right:-11px;
+  margin-left:-20px;
+  margin-right:-20px;
 }
 
 .album-plate {
   position: relative;
-  display: blcok;
+  display: block;
   z-index:0;
   margin-top: 0px;
   text-align: left;
@@ -140,10 +147,8 @@ h3, .h3 {
   
   box-shadow: inset 0px 4px 6px -6px rgba(0, 0, 0, .5); 
   border: 0px solid #777777;
-  
   max-height:0px;
   overflow:hidden;
-  transform: translate3d(0,0,0); /* trigger HW acceleration */
 
   transition: border 0.01s ease-out 0.25s, max-height 0.25s ease-out;
 }
@@ -254,6 +259,7 @@ h3, .h3 {
 .album-plate-img-wrap {
   text-align: right;
   float: right;
+  box-shadow: inset 16px 16px 25px #8BBB7A;
 }
 
 .album-plate-img {

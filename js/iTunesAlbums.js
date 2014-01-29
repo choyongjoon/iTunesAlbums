@@ -65,9 +65,8 @@ function showAlbumPlate(albumContainer){
 	
 	moveAlbumPlate(albumContainer);
 	
-	arrow.css("left", function(){
-  	return albumContainer.offset().left + albumContainer.width()/2 - 10;
-	});
+	arrow.css("left", arrowPosition(albumContainer));
+
 	arrow.removeClass("duck");
 	arrow.addClass("open");
 	arrowCover.addClass("open");
@@ -90,9 +89,7 @@ function changeAlbumPlate(albumContainer){
 	
 	// if selectedAlbumContainer and albumContainer are in a same row;
 	
-	altArrow.css("left", function(){
-  	return albumContainer.offset().left + albumContainer.width()/2 - 10;
-	});
+	altArrow.css("left", arrowPosition(albumContainer));
 	altArrow.removeClass("duck");
 	currentArrow.addClass("duck");
 	currentArrow.toggleClass("album-plate-arrow album-plate-arrow-alt");
@@ -118,17 +115,21 @@ function moveAlbumPlate(albumContainer){
 }
 
 
+function arrowPosition(albumContainer){
+	var albumPlateContainer = $(".album-plate-container");
+	return albumContainer.offset().left + albumContainer.width()/2 - albumPlateContainer.offset().left - 10;
+}
+
+
 // on resize 
 $( window ).resize(function() {
 	// only check horizontal resize
 	if($(window).width()==windowWidth) return;
 	windowWidth = $(window).width();
 	// repoisition the album-plate-arrow
-	$(".album-plate-arrow").css("left", function(){
-		if(selectedAlbumContainer!=undefined){
-  		return selectedAlbumContainer.offset().left + selectedAlbumContainer.width()/2 - 10;
-  	}
-	});
+	if(selectedAlbumContainer!=undefined){
+		$(".album-plate-arrow").css("left", arrowPosition(selectedAlbumContainer));
+	}
 	if(selectedAlbumContainer!=undefined){
 		moveAlbumPlate(selectedAlbumContainer);
 	}
