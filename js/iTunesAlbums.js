@@ -10,6 +10,16 @@ $(document).ready(function() {
 	$(".album-container").css("height", function(){
 		return $(this).find(".img-album").width() + 69;
 	});
+	$(".img-album").css("margin-top", function(){
+		if($(this).width() == $(this).height()){
+			return 0;
+		}else if($(this).width() > $(this).height()){
+			return $(this).width() - $(this).height();
+		}else{
+			$(this).css("height", $(this).width());
+			return 0;
+		}
+	});
 	
 	// on click function
   $(".img-album").click(function() { // when album image is selected
@@ -136,7 +146,15 @@ $( window ).resize(function() {
 	}
 	// resize the height
 	$(".album-container").css("height", function(){
-		return $(this).find(".img-album").width() + 69;
+		return $(this).parent().width() + 44;
+	});
+	
+	$(".img-album").css("margin-top", function(){
+		if($(this).width() > $(this).height()){
+			return $(this).width() - $(this).height();
+		}else{
+			return 0;
+		}
 	});
 });
 
