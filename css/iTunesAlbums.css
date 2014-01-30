@@ -81,35 +81,73 @@ h3, .h3 {
 }
 
 .album-container {
-	width: 86%;
 	padding-top: 20px;
-	margin-left:auto;
-	margin-right:auto;
-	
-  transition: width 0.25s ease-out, padding-top 0.25s ease-out, margin-bottom 0.25s ease-out; 
-}
-
-.album-container.selected {
-  width: 100%;
 }
 
 .img-album {
   display: inline-block;
   margin-bottom:5px;
-  
+  margin-left:7%;
+	margin-right:7%;
   background-color: #F7F6F8;
   border: 1px solid #777777;
   box-shadow: 0 3px 7px #888;
+  
+  transition: transform 0.25s ease-out;
+  /* for webkit, the transition makes album-plate transition bug */
+  /* -webkit-transition: -webkit-transform 0.25s ease-out; */
+}
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+.img-album {
+	width:117px;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+	.img-album {
+		width:132px;
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	.img-album {
+		width:112px;
+	}
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+	.img-album {
+		width:141px;
+	}
+}
+
+.img-album.selected {
+	transform:scale(1.16);
+	-webkit-transform:scale(1.16);
 }
 
 .album-name{
+	margin-left:7%;
+	margin-right:7%;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space : nowrap;
 	padding-bottom: 1px;
+	
+	transition: all 0.25s ease-out;
+}
+
+.album-name.selected{
+	margin-left:0;
+	margin-right:0;
 }
 
 .artist-name {
+	margin-left:7%;
+	margin-right:7%;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space : nowrap;
@@ -118,11 +156,13 @@ h3, .h3 {
 	position: relative;
 	opacity: 1;
 
-	transition: opacity 0.25s ease-out;
+	transition: all 0.25s ease-out;
 }
 
-.artist-name.transparent {
+.artist-name.selected {
 	opacity: 0;
+	margin-left:0;
+	margin-right:0;
 }
 /* album-plate
 ================================= */
