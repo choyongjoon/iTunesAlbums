@@ -186,7 +186,11 @@ h3, .h3 {
   border: 0px solid #777777;
   max-height:0px;
   overflow:hidden;
-
+ 
+	-webkit-transform: translate3d(0, 0, 0);
+	-webkit-backface-visibility: hidden;
+	-webkit-perspective: 1000;
+	
   transition: border 0.01s ease-out 0.25s, max-height 0.25s ease-out;
 }
 
