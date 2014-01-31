@@ -94,8 +94,7 @@ h3, .h3 {
   box-shadow: 0 3px 7px #888;
   
   transition: transform 0.25s ease-out;
-  /* for webkit, the transition makes album-plate transition bug */
-  /* -webkit-transition: -webkit-transform 0.25s ease-out; */
+  -webkit-transition: -webkit-transform 0.25s ease-out; 
 }
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
@@ -228,9 +227,8 @@ h3, .h3 {
   border-left: 1px solid #8BBB7A;
   box-shadow: inset 4px 4px 8px -6px rgba(0, 0, 0, .5);
   
-  -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
-  
+  -webkit-transform: rotate(45deg);
   transition: top 0.25s ease-out, opacity 0.01s ease-out, border 0.01s ease-out 0.25s;
 }
 
@@ -261,20 +259,20 @@ h3, .h3 {
   height:22px;
   z-index: 6;
   background-color:#F9F8F9;
-  opacity: 1;
+  visibility: visible;
 	border-top: 1px solid #F9F8F9;
   border-left: 1px solid #F9F8F9;
   
-	transition: opacity 0.01s ease-out, top 0.25s ease-out, left 0.25s ease-out, border 0.01s ease-out 0.25s;
+	transition: visibility 0.00s ease-out, top 0.25s ease-out, left 0.25s ease-out, border 0.01s ease-out 0.25s;
 }
 
 .album-plate-arrow-cover.open{
-	opacity: 0;
+	visibility: hidden;
   border-top: 1px solid #777777;
   border-left: 1px solid #777777;
   top: 217px; left: 217px;
-  
-	transition: top 0.25s ease-out, left 0.25s ease-out, border 0.01s ease-out, opacity 0.01s ease-out 0.25s;
+
+	transition: top 0.25s ease-out, left 0.25s ease-out, border 0.01s ease-out, visibility 0.00s ease-out 0.25s;
 }
 
 /* album-plate-content
