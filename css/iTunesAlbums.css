@@ -42,8 +42,8 @@ h3, .h3 {
 }
 
 .container {
-	padding-left: 30px;
 	padding-right: 30px;
+	padding-left: 30px;
 }
 
 .navbar {
@@ -53,12 +53,12 @@ h3, .h3 {
 /* list-header
 ================================= */
 .list-header {
-	background-color: #FDFDFD;
-	border-bottom: 2px solid #ADACAD;
 	padding-top: 6px;
+	padding-right: 20px;
 	padding-bottom: 8px;
 	padding-left: 20px;
-	padding-right: 20px;
+	border-bottom: 2px solid #ADACAD;
+	background-color: #FDFDFD;
 }
 .list-header-fixed-top {
 	position: fixed;
@@ -76,8 +76,8 @@ h3, .h3 {
 
 .album-row {
 	padding-top: 0px;
-	padding-left: 5px;
 	padding-right: 5px;
+	padding-left: 5px;
 }
 
 .album-container {
@@ -86,15 +86,15 @@ h3, .h3 {
 
 .img-album {
   display: inline-block;
+	margin-right:7%;
   margin-bottom:5px;
   margin-left:7%;
-	margin-right:7%;
-  background-color: #F7F6F8;
   border: 1px solid #777777;
+  background-color: #F7F6F8;
   box-shadow: 0 3px 7px #888;
+  -webkit-transition: -webkit-transform 0.25s ease-out;
   
-  transition: transform 0.25s ease-out;
-  -webkit-transition: -webkit-transform 0.25s ease-out; 
+  transition: transform 0.25s ease-out; 
 }
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
@@ -124,35 +124,35 @@ h3, .h3 {
 }
 
 .img-album.selected {
-	transform:scale(1.16);
 	-webkit-transform:scale(1.16);
+	transform:scale(1.16);
 }
 
 .album-name{
-	margin-left:7%;
-	margin-right:7%;
-	text-overflow: ellipsis;
 	overflow: hidden;
-	white-space : nowrap;
+	margin-right:7%;
+	margin-left:7%;
 	padding-bottom: 1px;
+	text-overflow: ellipsis;
+	white-space : nowrap;
 	
 	transition: all 0.25s ease-out;
 }
 
 .album-name.selected{
-	margin-left:0;
 	margin-right:0;
+	margin-left:0;
 }
 
 .artist-name {
-	margin-left:7%;
-	margin-right:7%;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space : nowrap;
-	margin-bottom: 10px;
-	z-index: 5;
 	position: relative;
+	z-index: 5;
+	overflow: hidden;
+	margin-right:7%;
+	margin-bottom: 10px;
+	margin-left:7%;
+	text-overflow: ellipsis;
+	white-space : nowrap;
 	opacity: 1;
 
 	transition: all 0.25s ease-out;
@@ -160,46 +160,45 @@ h3, .h3 {
 
 .artist-name.selected {
 	opacity: 0;
-	margin-left:0;
 	margin-right:0;
+	margin-left:0;
 }
 /* album-plate
 ================================= */
 
 .album-plate-container {
-  margin-left:-20px;
   margin-right:-20px;
+  margin-left:-20px;
 }
 
 .album-plate {
   position: relative;
-  display: block;
   z-index:0;
+  display: block;
+  overflow:hidden;
   margin-top: 0px;
-  text-align: left;
-  white-space: normal;
+  max-height:0px; 
+  border: 0px solid #777777;
   
   background-color: #8BBB7A;
   
-  box-shadow: inset 0px 4px 6px -6px rgba(0, 0, 0, .5); 
-  border: 0px solid #777777;
-  max-height:0px;
-  overflow:hidden;
+  box-shadow: inset 0px 4px 6px -6px rgba(0, 0, 0, .5);
+  text-align: left;
+  white-space: normal;
+	
+  transition: background-color 0.25s ease-out, border 0.01s ease-out 0.25s, max-height 0.25s ease-out;
  
 	-webkit-transform: translate3d(0, 0, 0);
 	-webkit-backface-visibility: hidden;
 	-webkit-perspective: 1000;
-	
-  transition: background-color 0.25s ease-out, border 0.01s ease-out 0.25s, max-height 0.25s ease-out;
 }
 
 .album-plate.open {
   display: block;
-  border: 1px solid #777777;
   max-height: 310px;
+  border: 1px solid #777777;
 
   transition: background-color 0.25s ease-out, max-height 0.25s ease-out, border 0.01s ease-out;
-
 }
 
 .close-button{
@@ -214,22 +213,22 @@ h3, .h3 {
 
 .album-plate-arrow,
 .album-plate-arrow-alt{
-  content: '';
 	position: relative;
 	top: -10px; left: 124px;
-  height: 20px; width: 20px;
-  margin-bottom: -20px;
   z-index: 4;
-  
-  opacity: 1;
-  background-color: #8BBB7A;
+  margin-bottom: -20px; width: 20px;
+  height: 20px;
 	border-top: 1px solid #8BBB7A;
   border-left: 1px solid #8BBB7A;
+  background-color: #8BBB7A;
   box-shadow: inset 4px 4px 8px -6px rgba(0, 0, 0, .5);
+  content: '';
+  
+  opacity: 1;
+  transition: background-color 0.25s ease-out, top 0.25s ease-out, opacity 0.01s ease-out, border 0.01s ease-out 0.25s;
+  -webkit-transform: rotate(45deg);
   
   transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  transition: background-color 0.25s ease-out, top 0.25s ease-out, opacity 0.01s ease-out, border 0.01s ease-out 0.25s;
 }
 
 .album-plate-arrow.open,
@@ -242,35 +241,35 @@ h3, .h3 {
 
 .album-plate-arrow.duck,
 .album-plate-arrow-alt.duck{
+  top:6px;
 	border-top: 1px solid #8BBB7A;
   border-left: 1px solid #8BBB7A;
-  top:6px;
-  opacity: 0;
   box-shadow: inset 4px 4px 8px -6px rgba(0, 0, 0, .0);
+  opacity: 0;
   transition: background-color 0.25s ease-out, top 0.25s ease-out, box-shadow 0.25s ease-out, opacity 0.01s ease-out 0.25s;
 }
 
 .album-plate-arrow-cover{
-  content: '';
 	position: absolute;
 	top: -2px; left: -2px;
-  height: 0px; width: 0px;
-  width:22px;
-  height:22px;
   z-index: 6;
-  background-color:#F9F8F9;
-  visibility: visible;
+  visibility: visible; width: 0px;
+  width:22px;
+  height: 0px;
+  height:22px;
 	border-top: 1px solid #F9F8F9;
   border-left: 1px solid #F9F8F9;
+  background-color:#F9F8F9;
+  content: '';
   
 	transition: visibility 0.00s ease-out, top 0.25s ease-out, left 0.25s ease-out, border 0.01s ease-out 0.25s;
 }
 
 .album-plate-arrow-cover.open{
+  top: 217px; left: 217px;
 	visibility: hidden;
   border-top: 1px solid #777777;
   border-left: 1px solid #777777;
-  top: 217px; left: 217px;
 
 	transition: top 0.25s ease-out, left 0.25s ease-out, border 0.01s ease-out, visibility 0.00s ease-out 0.25s;
 }
@@ -280,8 +279,8 @@ h3, .h3 {
 
 .album-plate-content {
   z-index: 0;
-	width: 100%;
 	overflow-y: auto;
+	width: 100%;
 }
 
 .album-plate-left-text {
@@ -296,19 +295,19 @@ h3, .h3 {
 }
 
 .album-plate-img-wrap {
-  text-align: right;
   float: right;
   box-shadow: inset 16px 16px 25px #8BBB7A;
+  text-align: right;
 
   transition: box-shadow 0.25s ease-out;
 }
 
 .album-plate-img {
   position: relative;
-  display: block;
   z-index: -2;
-  width: 100%;
+  display: block;
   max-width: 300px;
+  width: 100%;
   opacity: 0.7;
 }
 
@@ -330,6 +329,6 @@ h3, .h3 {
 }
 
 .album-plate .track-name {
-	font-size: 13px;
 	padding-bottom: 10px;
+	font-size: 13px;
 }
