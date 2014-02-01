@@ -1,9 +1,10 @@
 /*!
  * iTunesAlbums.js
  */
-
-var windowWidth = $(window).width(); 
 var selectedAlbumContainer;
+var albumColors;
+var windowWidth = $(window).width(); 
+
 
 
 $(document).ready(function() {
@@ -51,8 +52,26 @@ $(document).ready(function() {
   	selectedAlbumContainer = undefined;
 		hideAlbumPlate();
   });
-}); 
-
+  /*
+  var numAlbums = $(".img-album").length; 
+  albumColors = new Array();
+  for(var i=0; i<numAlbums; i++){
+  	var imgSrc = $(".img-album")[i].src;
+	  ImageAnalyzer(imgSrc, function(bgColor, primaryColor, secondaryColor, detailColor) {
+	  	var colors = new Object();
+      colors.bgColor = bgColor;
+      colors.primaryColor = primaryColor;
+      colors.secondaryColor = secondaryColor;
+      colors.detailColor = detailColor;
+      albumColors.push(colors);
+		}); 
+  }
+  */
+  
+  $.getJSON( "json/color.json", function( data ) {
+		albumColors = data.albumColors
+	});
+});
 
 // album size control at select/unselect
 
@@ -82,6 +101,7 @@ function showAlbumPlate(albumContainer){
 	var arrowCover = $(".album-plate-arrow").find(".album-plate-arrow-cover");
 	
 	moveAlbumPlate(albumContainer);
+	paintAlbumPlate(albumContainer);
 	
 	arrow.css("left", arrowPosition(albumContainer));
 
@@ -106,7 +126,7 @@ function changeAlbumPlate(albumContainer){
 	var altArrow = $(".album-plate-arrow-alt");
 	
 	// if selectedAlbumContainer and albumContainer are in a same row;
-	
+	paintAlbumPlate(albumContainer);
 	altArrow.css("left", arrowPosition(albumContainer));
 	altArrow.removeClass("duck");
 	currentArrow.addClass("duck");
@@ -131,7 +151,29 @@ function moveAlbumPlate(albumContainer){
 	}
 	albumPlateContainer.insertAfter(rowEnd);
 }
-
+  
+function paintAlbumPlate(albumContainer){
+	var image = albumContainer.find(".img-album")
+	var imageSrc = image.attr("src");
+  var albumPlate = $(".album-plate");
+  var id = getId(albumContainer);
+  
+  // change text
+  albumPlate.find(".album-name").text(albumContainer.find(".album-name").text());
+	albumPlate.find(".artist-name").text(albumContainer.find(".artist-name").text());
+  
+  // chnage image
+	albumPlate.find(".album-plate-img").attr("src", image.attr("src"));
+  
+  // chnage colors
+  albumPlate.css("background-color", 'rgb(' + albumColors[id].bgColor + ')');
+	$(".album-plate-arrow").css("background-color", 'rgb(' + albumColors[id].bgColor + ')');
+	$(".album-plate-arrow-alt").css("background-color", 'rgb(' + albumColors[id].bgColor + ')');
+	albumPlate.find(".album-plate-img-wrap").css("box-shadow", "inset 16px 16px 25px " + 'rgb(' + albumColors[id].bgColor + ')');
+	
+	albumPlate.find(".first-color").css("color",'rgb(' + albumColors[id].secondaryColor + ')');
+	albumPlate.find(".second-color").css("color", 'rgb(' + albumColors[id].primaryColor + ')');
+}
 
 function arrowPosition(albumContainer){
 	var albumPlateContainer = $(".album-plate-container");
@@ -166,6 +208,7 @@ $( window ).resize(function() {
 	});
 });
 
+
 function numAlbumsInRow(){
 	var width = $( window ).width();
 	if(width < 768){ 				// Extra small devices Phones (<768px)
@@ -185,4 +228,8 @@ function getRowId(albumContainer){
 	var selectedRow = parseInt(albumContainer.parent().index() / (numInRow * 3/2)); // 3/2: consider clearfix
 	//console.log("selected row: " + selectedRow);
 	return selectedRow;
+}
+
+function getId(albumContainer){
+	return parseInt(albumContainer.parent().index() / 3) * 2 + albumContainer.parent().index() % 3;
 }

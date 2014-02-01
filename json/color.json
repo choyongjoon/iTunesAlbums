@@ -1,0 +1,46 @@
+{
+    "albumColors": [
+        {
+            "bgColor": "133,165,110",
+            "detailColor": "140,80,50",
+            "primaryColor": "71,74,86",
+            "secondaryColor": "69,31,20"
+        },
+        {
+            "bgColor": "244,247,252",
+            "detailColor": "0,0,0",
+            "primaryColor": "71,74,79",
+            "secondaryColor": "144,119,138"
+        },
+        {
+            "bgColor": "5,15,50",
+            "detailColor": "152,131,252",
+            "primaryColor": "84,148,254",
+            "secondaryColor": "253,253,253"
+        },
+        {
+            "bgColor": "239,239,239",
+            "detailColor": "89,6,0",
+            "primaryColor": "0,0,0",
+            "secondaryColor": "145,116,0"
+        },
+        {
+            "bgColor": "253,254,2",
+            "detailColor": "255,255,77",
+            "primaryColor": "6,191,255",
+            "secondaryColor": "251,1,2"
+        },
+        {
+            "bgColor": "176,0,0",
+            "detailColor": "238,114,44",
+            "primaryColor": "241,199,17",
+            "secondaryColor": "253,253,253"
+        },
+        {
+            "bgColor": "56,46,27",
+            "detailColor": "135,65,55",
+            "primaryColor": "255,241,154",
+            "secondaryColor": "253,253,253"
+        }
+    ]
+}
