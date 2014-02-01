@@ -28,12 +28,19 @@ $(document).ready(function() {
 			if (selectedAlbumContainer.is(albumContainer)) {
 				unselectAlbum(albumContainer);
 				selectedAlbumContainer = undefined;
-				hideAlbumPlate(albumContainer);
+				hideAlbumPlate();
 			} else {
 				unselectAlbum(selectedAlbumContainer);
 				selectAlbum(albumContainer);
-				selectedAlbumContainer = albumContainer;
-				changeAlbumPlate(albumContainer);
+				if(getRowId(albumContainer)==getRowId(selectedAlbumContainer)){
+					selectedAlbumContainer = albumContainer;
+					changeAlbumPlate(albumContainer);
+				}else{
+					hideAlbumPlate();
+					selectedAlbumContainer = albumContainer;
+					showAlbumPlate(albumContainer);
+					//TODO: show alt album plate and switch class
+				}
 			}
 		} else {
 			selectAlbum(albumContainer);
@@ -98,7 +105,7 @@ function showAlbumPlate(albumContainer) {
 	albumPlate.addClass("open");
 };
 
-function hideAlbumPlate(albumContainer) {
+function hideAlbumPlate() {
 	var albumPlate = $(".album-plate");
 	var arrow = $(".album-plate-arrow");
 	var arrowCover = $(".album-plate-arrow").find(".album-plate-arrow-cover");
