@@ -135,8 +135,11 @@ h3, .h3 {
 	padding-bottom: 1px;
 	text-overflow: ellipsis;
 	white-space : nowrap;
-	
 	transition: all 0.25s ease-out;
+		
+	/* prevent safari transition flickering */
+	-webkit-backface-visibility: hidden;
+	-webkit-perspective: 1000;
 }
 
 .album-name.selected{
@@ -154,14 +157,17 @@ h3, .h3 {
 	text-overflow: ellipsis;
 	white-space : nowrap;
 	opacity: 1;
-
 	transition: all 0.25s ease-out;
+	
+	/* prevent safari transition flickering */
+	-webkit-backface-visibility: hidden;
+	-webkit-perspective: 1000;
 }
 
 .artist-name.selected {
-	opacity: 0;
 	margin-right:0;
 	margin-left:0;
+	opacity: 0;
 }
 /* album-plate
 ================================= */
