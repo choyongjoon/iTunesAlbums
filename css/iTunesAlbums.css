@@ -81,7 +81,17 @@ h3, .h3 {
 }
 
 .album-container {
+	margin:auto;
 	padding-top: 20px;
+	/* fixed width for extra small devices) */
+	width:136px;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+	.album-container {
+		width:100%;
+	}
 }
 
 .img-album {
