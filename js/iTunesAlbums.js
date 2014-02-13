@@ -11,7 +11,7 @@ $(document).ready(function() {
 		return $(this).find(".img-album").width() + 69;
 	});
 	// for non rectangle album image. need to change
-	$(".img-album").css("margin-top", function() {
+	/*$(".img-album").css("margin-top", function() {
 		if ($(this).width() == $(this).height()) {
 			return 0;
 		} else if ($(this).width() > $(this).height()) {
@@ -20,7 +20,7 @@ $(document).ready(function() {
 			$(this).css("height", $(this).width());
 			return 0;
 		}
-	});
+	});*/
 	// on click function
 	$(".img-album").click(function() { // when album image is selected
 		var albumContainer = $(this).parent();
@@ -181,13 +181,13 @@ $(window).resize(function() {
 	$(".album-container").css("height", function() {
 		return $(this).find(".img-album").width() + 69;
 	});
-	$(".img-album").css("margin-top", function() {
+	/*$(".img-album").css("margin-top", function() {
 		if ($(this).width() > $(this).height()) {
 			return $(this).width() - $(this).height();
 		} else {
 			return 0;
 		}
-	});
+	});*/
 });
 
 function numAlbumsInRow() {

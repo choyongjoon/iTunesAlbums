@@ -4,7 +4,9 @@
 
 html,
 body {
-  overflow-x: hidden; /* Prevent scroll on narrow devices */
+  overflow-x: hidden; /*  Prevent scroll on narrow devices */
+  overflow-y: scroll;
+  /* -webkit-overflow-scrolling: touch; */
 }
 body {
   padding-top: 0px;
