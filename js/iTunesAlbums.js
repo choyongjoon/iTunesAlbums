@@ -23,7 +23,7 @@ $(document).ready(function() {
 	});*/
 	// on click function
 	$(".img-album").click(function() { // when album image is selected
-		var albumContainer = $(this).parent();
+		var albumContainer = $(this).parent().parent();
 		if (selectedAlbumContainer != undefined) {
 			if (selectedAlbumContainer.is(albumContainer)) {
 				unselectAlbum(albumContainer);

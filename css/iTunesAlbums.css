@@ -85,6 +85,8 @@ h3, .h3 {
 .album-container {
 	margin:auto;
 	padding-top: 20px;
+	vertical-align: bottom;
+	
 	/* fixed width for extra small devices) */
 	width:136px;
 }
@@ -96,16 +98,46 @@ h3, .h3 {
 	}
 }
 
+.img-album-container {
+	position:relative;
+	vertical-align: bottom;
+	/* fixed height for extra small devices) */
+	height: 117px;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+	.img-album-container {
+		height:132px;
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	.img-album-container {
+		height:112px;
+	}
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+	.img-album-container {
+		height:141px;
+	}
+}
+
 .img-album {
   display: inline-block;
+  position: absolute;
 	margin-right:7%;
-  margin-bottom:5px;
   margin-left:7%;
+  bottom:0px;
   border: 1px solid #777777;
   background-color: #F7F6F8;
   box-shadow: 0 3px 7px #888;
   -webkit-transition: -webkit-transform 0.25s ease-out;
   
+  vertical-align: bottom;
   transition: transform 0.25s ease-out; 
 }
 /* Extra small devices (phones, less than 768px) */
@@ -142,6 +174,7 @@ h3, .h3 {
 
 .album-name{
 	overflow: hidden;
+	margin-top:5px;
 	margin-right:7%;
 	margin-left:7%;
 	padding-bottom: 1px;
