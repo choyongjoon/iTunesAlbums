@@ -88,7 +88,6 @@ h3, .h3 {
 .album-container {
 	margin:auto;
 	padding-top: 20px;
-	vertical-align: bottom;
 	
 	/* fixed width for extra small devices) */
 	width:136px;
@@ -103,7 +102,6 @@ h3, .h3 {
 
 .img-album-container {
 	position:relative;
-	vertical-align: bottom;
 	/* fixed height for extra small devices) */
 	height: 117px;
 }
@@ -140,7 +138,6 @@ h3, .h3 {
   box-shadow: 0 3px 7px #888;
   -webkit-transition: -webkit-transform 0.25s ease-out;
   
-  vertical-align: bottom;
   transition: transform 0.25s ease-out; 
 }
 /* Extra small devices (phones, less than 768px) */
