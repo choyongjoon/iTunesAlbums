@@ -317,7 +317,7 @@ h3, .h3 {
 }
 
 .album-plate-arrow-cover.open{
-  top: 229px; left: 229px;
+  top: 234px; left: 234px;
 	visibility: hidden;
   border-top: 1px solid #777777;
   border-left: 1px solid #777777;
@@ -393,4 +393,3 @@ h3, .h3 {
 	font-size: 14px;
 	line-height: 1.8;
 }
-
