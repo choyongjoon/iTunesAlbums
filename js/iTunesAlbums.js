@@ -10,17 +10,6 @@ $(document).ready(function() {
 	$(".album-container").css("height", function() {
 		return $(this).find(".img-album").width() + 69;
 	});
-	// for non rectangle album image. need to change
-	/*$(".img-album").css("margin-top", function() {
-		if ($(this).width() == $(this).height()) {
-			return 0;
-		} else if ($(this).width() > $(this).height()) {
-			return $(this).width() - $(this).height();
-		} else {
-			$(this).css("height", $(this).width());
-			return 0;
-		}
-	});*/
 	// on click function
 	$(".img-album").click(function() { // when album image is selected
 		var albumContainer = $(this).parent().parent();
@@ -147,8 +136,9 @@ function paintAlbumPlate(albumContainer) {
 	var albumPlate = $(".album-plate");
 	var id = getId(albumContainer);
 	// change text
-	albumPlate.find(".album-name").text(albumContainer.find(".album-name").text());
-	albumPlate.find(".artist-name").text(albumContainer.find(".artist-name").text());
+	albumPlate.find(".ap-album-name").text(albumContainer.find(".album-name").text());
+	albumPlate.find(".ap-artist-name").text(albumContainer.find(".artist-name").text());
+	albumPlate.find(".ap-album-review").html(albumContainer.find(".album-review ").html());
 	// chnage image
 	albumPlate.find(".album-plate-img").attr("src", image.attr("src"));
 	// chnage colors

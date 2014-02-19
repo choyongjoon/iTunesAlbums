@@ -19,7 +19,6 @@ footer {
   /*padding: 30px 0;*/
 }
 
-p,
 h1,
 h2,
 h3,
@@ -181,7 +180,8 @@ h3, .h3 {
 	text-overflow: ellipsis;
 	white-space : nowrap;
 	transition: all 0.25s ease-out;
-		
+	margin-bottom: 0;
+	line-height: 1;	
 	/* prevent safari transition flickering */
 	-webkit-backface-visibility: hidden;
 	-webkit-perspective: 1000;
@@ -203,7 +203,7 @@ h3, .h3 {
 	white-space : nowrap;
 	opacity: 1;
 	transition: all 0.25s ease-out;
-	
+	line-height: 1;
 	/* prevent safari transition flickering */
 	-webkit-backface-visibility: hidden;
 	-webkit-perspective: 1000;
@@ -246,7 +246,7 @@ h3, .h3 {
 
 .album-plate.open {
   display: block;
-  max-height: 310px;
+  max-height: 336px;
   border: 1px solid #777777;
 
   transition: background-color 0.25s ease-out, max-height 0.25s ease-out, border 0.01s ease-out;
@@ -317,7 +317,7 @@ h3, .h3 {
 }
 
 .album-plate-arrow-cover.open{
-  top: 217px; left: 217px;
+  top: 229px; left: 229px;
 	visibility: hidden;
   border-top: 1px solid #777777;
   border-left: 1px solid #777777;
@@ -330,14 +330,16 @@ h3, .h3 {
 
 .album-plate-content {
   z-index: 0;
-	overflow-y: auto;
+	margin-top: 26px;
 	width: 100%;
 }
 
 .album-plate-left-text {
 	margin-left: 52px;
-	width:268px;
+	padding-right: 52px;
+	min-width:268px;
 	height:300px;
+	overflow: scroll;
 }
 
 .two-column {
@@ -370,16 +372,25 @@ h3, .h3 {
 	color: #3F4149;
 }
 
-.album-plate .album-name {
+.album-plate .ap-album-name {
 	font-size: 20px;
   line-height: 1.3;
+  margin-bottom: 0;
 }
-.album-plate .artist-name {
+.album-plate .ap-artist-name {
 	font-size: 15px;
 	line-height: 1.3;
+	margin-bottom: 0;
 }
 
-.album-plate .track-name {
+.album-plate .ap-track-name {
 	padding-bottom: 10px;
 	font-size: 13px;
+	margin-bottom: 0;
 }
+
+.album-plate .ap-album-review p {
+	font-size: 14px;
+	line-height: 1.8;
+}
+
