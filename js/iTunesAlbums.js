@@ -60,6 +60,10 @@ $(document).ready(function() {
 	$.getJSON("json/color.json", function(data) {
 		albumColors = data.albumColors
 	});
+	// lion bars
+	$('.album-plate-left-text').lionbars({
+    autohide: true
+});
 });
 
 // album size control at select/unselect
