@@ -119,8 +119,9 @@ footer {
   border: 1px solid #777777;
   background-color: #F7F6F8;
   box-shadow: 0 3px 7px #888;
-  -webkit-transition: -webkit-transform 0.25s ease-out;
+  cursor:pointer;
   
+  -webkit-transition: -webkit-transform 0.25s ease-out;
   transition: transform 0.25s ease-out; 
 }
 /* Extra small devices (phones, less than 768px) */
@@ -323,8 +324,8 @@ footer {
 .album-plate-left-text {
 	overflow-x: hidden;
 	overflow-y: scroll;
-	margin-left: 52px;
-	padding-right: 52px;
+	margin-left: 42px;
+	padding-right: 42px;
 	min-width:268px;
 	height:300px;
 }
