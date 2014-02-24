@@ -205,7 +205,7 @@ body {
   z-index:0;
   display: block;
   overflow:hidden;
-  margin-top: 0px;
+  margin-top: -23px;
   max-height:0px; 
   border: 0px solid #777777;
   
@@ -245,7 +245,8 @@ body {
 	position: relative;
 	top: -10px; left: 124px;
   z-index: 4;
-  margin-bottom: -20px; width: 20px;
+  margin-bottom: -20px;
+  width: 20px;
   height: 20px;
 	border-top: 1px solid #8BBB7A;
   border-left: 1px solid #8BBB7A;
@@ -256,7 +257,6 @@ body {
   opacity: 1;
   transition: background-color 0.25s ease-out, top 0.25s ease-out, opacity 0.01s ease-out, border 0.01s ease-out 0.25s;
   -webkit-transform: rotate(45deg);
-  
   transform: rotate(45deg);
 }
 
@@ -279,28 +279,29 @@ body {
 }
 
 .album-plate-arrow-cover{
-	position: absolute;
-	top: -2px; left: -2px;
-  z-index: 6;
-  visibility: visible; width: 0px;
-  width:22px;
-  height: 0px;
-  height:22px;
+	position: relative;
+	top: -12px; left: 124px;
+	z-index: 4;
+  opacity: 1;
+  width:23px;
+  height:23px;
 	border-top: 1px solid #F9F8F9;
   border-left: 1px solid #F9F8F9;
   background-color:#F9F8F9;
   content: '';
   
-	transition: visibility 0.00s ease-out, top 0.25s ease-out, left 0.25s ease-out, border 0.01s ease-out 0.25s;
+	transition: opacity 0.00s ease-out, top 0.25s ease-out, border 0.01s ease-out 0.25s;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
 }
 
 .album-plate-arrow-cover.open{
-  top: 234px; left: 234px;
-	visibility: hidden;
+  top: 320px;
+	opacity: 0;
   border-top: 1px solid #777777;
   border-left: 1px solid #777777;
 
-	transition: top 0.25s ease-out, left 0.25s ease-out, border 0.01s ease-out, visibility 0.00s ease-out 0.25s;
+	transition: top 0.25s ease-out, border 0.01s ease-out, opacity 0.00s ease-out 0.25s;
 }
 
 /* album-plate-content

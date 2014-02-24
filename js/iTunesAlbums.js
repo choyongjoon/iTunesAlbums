@@ -85,10 +85,11 @@ function unselectAlbum(albumContainer) {
 function showAlbumPlate(albumContainer) {
 	var albumPlate = $(".album-plate");
 	var arrow = $(".album-plate-arrow");
-	var arrowCover = $(".album-plate-arrow").find(".album-plate-arrow-cover");
+	var arrowCover = $(".album-plate-arrow-cover");
 	moveAlbumPlate(albumContainer);
 	paintAlbumPlate(albumContainer);
 	arrow.css("left", arrowPosition(albumContainer));
+	arrowCover.css("left", arrowPosition(albumContainer)-1);
 	arrow.removeClass("duck");
 	arrow.addClass("open");
 	arrowCover.addClass("open");
@@ -103,7 +104,7 @@ function showAlbumPlate(albumContainer) {
 function hideAlbumPlate() {
 	var albumPlate = $(".album-plate");
 	var arrow = $(".album-plate-arrow");
-	var arrowCover = $(".album-plate-arrow").find(".album-plate-arrow-cover");
+	var arrowCover = $(".album-plate-arrow-cover");
 	arrow.removeClass("open");
 	arrowCover.removeClass("open");
 	albumPlate.removeClass("open");
@@ -112,9 +113,11 @@ function hideAlbumPlate() {
 function changeAlbumPlate(albumContainer) {
 	var currentArrow = $(".album-plate-arrow");
 	var altArrow = $(".album-plate-arrow-alt");
+	var arrowCover = $(".album-plate-arrow-cover");
 	// if selectedAlbumContainer and albumContainer are in a same row;
 	paintAlbumPlate(albumContainer);
 	altArrow.css("left", arrowPosition(albumContainer));
+	arrowCover.css("left", arrowPosition(albumContainer)-1);
 	altArrow.removeClass("duck");
 	currentArrow.addClass("duck");
 	currentArrow.toggleClass("album-plate-arrow album-plate-arrow-alt");
