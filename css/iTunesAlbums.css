@@ -205,17 +205,18 @@ body {
   z-index:0;
   display: block;
   overflow:hidden;
-  margin-top: -23px;
+  margin-top: -22px;
   max-height:0px; 
-  border: 0px solid #777777;
-  
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 0px solid #ccc;
   background-color: #8BBB7A;
   
-  box-shadow: inset 0px 4px 6px -6px rgba(0, 0, 0, .5);
+  box-shadow: inset 0px 5px 6px -6px rgba(0, 0, 0, .8);
   text-align: left;
   white-space: normal;
 	
-  transition: background-color 0.25s ease-out, border 0.01s ease-out 0.25s, max-height 0.25s ease-out;
+  transition: background-color 0.25s ease-out, max-height 0.25s ease-out;
  
 	-webkit-transform: translate3d(0, 0, 0);
 	-webkit-backface-visibility: hidden;
@@ -225,9 +226,10 @@ body {
 .album-plate.open {
   display: block;
   max-height: 336px;
-  border: 1px solid #777777;
-
-  transition: background-color 0.25s ease-out, max-height 0.25s ease-out, border 0.01s ease-out;
+  border-left: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+  transition: background-color 0.25s ease-out, max-height 0.25s ease-out;
 }
 
 .close-button{
@@ -243,27 +245,23 @@ body {
 .album-plate-arrow,
 .album-plate-arrow-alt{
 	position: relative;
-	top: -10px; left: 124px;
+	top: -9px; left: 124px;
   z-index: 4;
   margin-bottom: -20px;
   width: 20px;
   height: 20px;
-	border-top: 1px solid #8BBB7A;
-  border-left: 1px solid #8BBB7A;
   background-color: #8BBB7A;
-  box-shadow: inset 4px 4px 8px -6px rgba(0, 0, 0, .5);
+  box-shadow: inset 4px 4px 8px -6px rgba(0, 0, 0, .8);
   content: '';
   
   opacity: 1;
-  transition: background-color 0.25s ease-out, top 0.25s ease-out, opacity 0.01s ease-out, border 0.01s ease-out 0.25s;
+  transition: background-color 0.25s ease-out, top 0.25s ease-out, opacity 0.01s ease-out;
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 
 .album-plate-arrow.open,
 .album-plate-arrow-alt.open{
-	border-top: 1px solid #777777;
-  border-left: 1px solid #777777;
   opacity: 1;
   transition: background-color 0.25s ease-out, top 0.25s ease-out, opacity 0.01s ease-out;
 }
@@ -271,8 +269,6 @@ body {
 .album-plate-arrow.duck,
 .album-plate-arrow-alt.duck{
   top:6px;
-	border-top: 1px solid #8BBB7A;
-  border-left: 1px solid #8BBB7A;
   box-shadow: inset 4px 4px 8px -6px rgba(0, 0, 0, .0);
   opacity: 0;
   transition: background-color 0.25s ease-out, top 0.25s ease-out, box-shadow 0.25s ease-out, opacity 0.01s ease-out 0.25s;
@@ -280,17 +276,17 @@ body {
 
 .album-plate-arrow-cover{
 	position: relative;
-	top: -12px; left: 124px;
+	top: -11px; left: 124px;
 	z-index: 4;
   opacity: 1;
-  width:23px;
-  height:23px;
-	border-top: 1px solid #F9F8F9;
-  border-left: 1px solid #F9F8F9;
+  width:22px;
+  height:22px;
   background-color:#F9F8F9;
+  border-top: 0px solid #aaa;
+  border-left: 0px solid #aaa;
   content: '';
   
-	transition: opacity 0.00s ease-out, top 0.25s ease-out, border 0.01s ease-out 0.25s;
+	transition: opacity 0.00s ease-out, top 0.25s ease-out, border 0.25s ease-out 0.01s;
 	-webkit-transform: rotate(45deg);
 	transform: rotate(45deg);
 }
@@ -298,8 +294,8 @@ body {
 .album-plate-arrow-cover.open{
   top: 320px;
 	opacity: 0;
-  border-top: 1px solid #777777;
-  border-left: 1px solid #777777;
+  border-top: 1px solid #aaa;
+  border-left: 1px solid #aaa;
 
 	transition: top 0.25s ease-out, border 0.01s ease-out, opacity 0.00s ease-out 0.25s;
 }
