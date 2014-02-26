@@ -198,6 +198,7 @@ body {
 .album-plate-container {
   margin-right:-20px;
   margin-left:-20px;
+  position:relative;
 }
 
 .album-plate {
@@ -205,7 +206,6 @@ body {
   z-index:0;
   display: block;
   overflow:hidden;
-  margin-top: -22px;
   max-height:0px; 
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
@@ -216,7 +216,7 @@ body {
   text-align: left;
   white-space: normal;
 	
-  transition: background-color 0.25s ease-out, max-height 0.25s ease-out;
+  transition: background-color 0.25s ease-out, max-height 0.25s ease-out, 0.25s border-bottom ease-out 0.01s;
  
 	-webkit-transform: translate3d(0, 0, 0);
 	-webkit-backface-visibility: hidden;
@@ -229,7 +229,7 @@ body {
   border-left: 1px solid #aaa;
   border-right: 1px solid #aaa;
 	border-bottom: 1px solid #aaa;
-  transition: background-color 0.25s ease-out, max-height 0.25s ease-out;
+  transition: background-color 0.25s ease-out, max-height 0.25s ease-out, 0.25s border-bottom ease-out 0.01s;
 }
 
 .close-button{
@@ -275,8 +275,8 @@ body {
 }
 
 .album-plate-arrow-cover{
-	position: relative;
-	top: -11px; left: 124px;
+	position: absolute;
+	bottom: -12px; left: 124px;
 	z-index: 4;
   opacity: 1;
   width:22px;
@@ -292,8 +292,7 @@ body {
 }
 
 .album-plate-arrow-cover.open{
-  top: 320px;
-	opacity: 0;
+  opacity: 0;
   border-top: 1px solid #aaa;
   border-left: 1px solid #aaa;
 
