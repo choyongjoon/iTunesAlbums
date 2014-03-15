@@ -38,7 +38,6 @@ $(document).ready(function() {
 		}
 	});
 	$(document).on("click", ".close-button", function() {
-		console.log("close=b8tton");
 		unselectAlbum(selectedAlbumContainer);
 		selectedAlbumContainer = undefined;
 		hideAlbumPlate();

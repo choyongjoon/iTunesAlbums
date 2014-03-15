@@ -158,6 +158,7 @@ body {
 	text-overflow: ellipsis;
 	white-space : nowrap;
 	line-height: 1;
+	font-weight:bold;
 	transition: all 0.25s ease-out;	
 	/* prevent safari transition flickering */
 	-webkit-backface-visibility: hidden;
@@ -216,7 +217,7 @@ body {
 	text-align: left;
 	white-space: normal;
 	
-	transition: background-color 0.25s ease-out, max-height 0.25s ease-out, 0.25s border-bottom ease-out 0.01s;
+	transition: max-height 0.25s ease-out, 0.25s border-bottom ease-out 0.01s;
  
 	-webkit-transform: translate3d(0, 0, 0);
 	-webkit-backface-visibility: hidden;
@@ -255,7 +256,7 @@ body {
 	content: '';
 	
 	opacity: 1;
-	transition: background-color 0.25s ease-out, top 0.25s ease-out, opacity 0.01s ease-out;
+	transition: top 0.25s ease-out, opacity 0.01s ease-out;
 	-webkit-transform: rotate(45deg);
 	transform: rotate(45deg);
 }
