@@ -196,10 +196,29 @@ body {
 /* album-plate
 ================================= */
 
-.album-plate-container {
+/* z-index
+ 1: .album-plate-container
+ 0: .album-plate-container-alt
+
+ 2: .album-plate-arrow-cover
+ 1: .album-plate-arrow
+ 0: .album-plate
+
+ 0: .album-plate-content
+-1: .album-plate-img
+*/
+
+
+.album-plate-container,
+.album-plate-container-alt {
 	position:relative;
+	z-index: 1;
 	margin-right:-20px;
 	margin-left:-20px;
+}
+
+.album-plate-container-alt {
+	z-index: 0;
 }
 
 .album-plate {
@@ -218,7 +237,7 @@ body {
 	white-space: normal;
 	
 	transition: max-height 0.25s ease-out, 0.25s border-bottom ease-out 0.01s;
- 
+
 	-webkit-transform: translate3d(0, 0, 0);
 	-webkit-backface-visibility: hidden;
 	-webkit-perspective: 1000;
@@ -247,7 +266,7 @@ body {
 .album-plate-arrow-alt{
 	position: relative;
 	top: -9px; left: 124px;
-	z-index: 4;
+	z-index: 1;
 	margin-bottom: -20px;
 	width: 20px;
 	height: 20px;
@@ -278,7 +297,7 @@ body {
 .album-plate-arrow-cover{
 	position: absolute;
 	bottom: -12px; left: 124px;
-	z-index: 4;
+	z-index: 2;
 	width:22px;
 	height:22px;
 	border-top: 0px solid #aaa;
@@ -297,7 +316,7 @@ body {
 	border-left: 1px solid #aaa;
 	opacity: 0;
 
-	transition: top 0.25s ease-out, border 0.01s ease-out, opacity 0.00s ease-out 0.25s;
+	transition: top 0.25s ease-out, border 0.01s ease-out, opacity 0.25s ease-out 0.25s;
 }
 
 /* album-plate-content
@@ -332,7 +351,7 @@ body {
 
 .album-plate-img {
 	position: relative;
-	z-index: -2;
+	z-index: -1;
 	display: block;
 	max-width: 300px;
 	width: 100%;

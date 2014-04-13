@@ -1,15 +1,156 @@
 /*!
  * iTunesAlbums.js
  */
+
+/*!
+ * util functions
+ */
+
+function numAlbumsInRow() {
+	var width = $(window).width();
+	if (width < 768) { // Extra small devices Phones (<768px)
+		return 2;
+	} else if (width < 992) { // Small devices Tablets (≥768px)
+		return 4;
+	} else if (width < 1200) { // Medium devices Desktops (≥992px)
+		return 6;
+	} else { // Large devices Desktops (≥1200px)
+		return 6;
+	}
+};
+
+function getRowId(albumContainer) {
+	var numInRow = numAlbumsInRow();
+	//console.log("# albums in a row: " + numAlbumsInRow());
+	var selectedRow = parseInt(getId(albumContainer) / numInRow);
+	//console.log("selected row: " + selectedRow);
+	return selectedRow;
+};
+
+function getId(albumContainer) {
+	//console.log(albumContainer.parent().parent().find('.col-xs-6').index(albumContainer.parent()));
+	return albumContainer.parent().parent().find('.col-xs-6').index(albumContainer.parent());
+};
+
+
+/*!
+ * AlbumPlate
+ */
+
+(function(doc) {
+
+	var AlbumPlate = {};
+	
+	AlbumPlate = function(albumPlateContainer) {
+		this.container = albumPlateContainer;
+		this.albumPlate = albumPlateContainer.find(".album-plate");
+		this.arrow = albumPlateContainer.find(".album-plate-arrow");
+		this.altArrow = albumPlateContainer.find(".album-plate-arrow-alt");
+		this.arrowCover = albumPlateContainer.find(".album-plate-arrow-cover");
+	};
+	
+	AlbumPlate.prototype.arrowPosition = function(albumContainer) {
+		return albumContainer.offset().left + albumContainer.width() / 2 - this.container.offset().left - 10;
+	};
+	
+	AlbumPlate.prototype.show = function(albumContainer) {
+		var arrow = this.arrow;
+		var arrowCover = this.arrowCover;
+		
+		this.move(albumContainer);
+		this.paint(albumContainer);
+		arrow.css("left", this.arrowPosition(albumContainer));
+		arrowCover.css("left", this.arrowPosition(albumContainer)-1);
+		arrow.removeClass("duck");
+		arrow.addClass("open");
+		arrowCover.addClass("open");
+		this.albumPlate.addClass("open");
+		this.fill(albumContainer);
+	};
+
+	AlbumPlate.prototype.hide = function() {
+		this.arrow.removeClass("open");
+		this.arrowCover.removeClass("open");
+		this.albumPlate.removeClass("open");
+	};
+
+	AlbumPlate.prototype.change = function(albumContainer) {
+		var currentArrow = this.arrow;
+		var altArrow = this.altArrow;
+		var arrowCover = this.arrowCover;
+		// if selectedAlbumContainer and albumContainer are in a same row;
+		this.paint(albumContainer);
+		altArrow.css("left", this.arrowPosition(albumContainer));
+		arrowCover.css("left", this.arrowPosition(albumContainer)-1);
+		altArrow.removeClass("duck");
+		currentArrow.addClass("duck");
+		// toggle
+		currentArrow.toggleClass("album-plate-arrow album-plate-arrow-alt");
+		altArrow.toggleClass("album-plate-arrow-alt album-plate-arrow");
+		this.altArrow = currentArrow;
+		this.arrow = altArrow;
+		this.fill(albumContainer);
+	};
+	
+	AlbumPlate.prototype.move = function(albumContainer) {
+		var albumPlateContainer = this.container;
+		var albumRow = $(".album-row");
+		// reposition the album plate after the selected row
+		var rowId = getRowId(albumContainer);
+		albumPlateContainer.remove();
+		var rowEnd = albumRow.find(".clearfix").eq((rowId + 1) * numAlbumsInRow() / 2 - 1);
+		//var rowEnd = albumRow.children()[((rowId + 1) * numAlbumsInRow() * 3 / 2) - 1]; // 3/2: consider clearfix
+		console.log(rowEnd);
+		if (rowEnd.length > 0) {
+			albumPlateContainer.insertAfter(rowEnd);
+		}else{
+			albumPlateContainer.appendTo(albumRow);
+		}
+	};
+	
+	AlbumPlate.prototype.paint = function(albumContainer) {
+		var albumPlate = this.albumPlate;
+		var id = getId(albumContainer);
+		// chnage colors
+		//console.log(id, this, albumPlate, albumContainer);
+		albumPlate.css("background-color", 'rgb(' + albumColors[id].bgColor + ')');
+		this.arrow.css("background-color", 'rgb(' + albumColors[id].bgColor + ')');
+		this.altArrow.css("background-color", 'rgb(' + albumColors[id].bgColor + ')');
+		albumPlate.find(".album-plate-img-wrap").css("box-shadow", "inset 16px 16px 25px " + 'rgb(' + albumColors[id].bgColor + ')');
+		albumPlate.find(".first-color").css("color", 'rgb(' + albumColors[id].secondaryColor + ')');
+		albumPlate.find(".second-color").css("color", 'rgb(' + albumColors[id].primaryColor + ')');
+	};
+
+	AlbumPlate.prototype.fill = function(albumContainer) {
+		var image = albumContainer.find(".img-album")
+		var imageSrc = image.attr("src");
+		var albumPlate = this.albumPlate;
+		// change text
+		albumPlate.find(".ap-album-name").text(albumContainer.find(".album-name").text());
+		albumPlate.find(".ap-artist-name").text(albumContainer.find(".artist-name").text());
+		albumPlate.find(".ap-album-review").html(albumContainer.find(".album-review ").html());
+		// chnage image
+		albumPlate.find(".album-plate-img").attr("src", image.attr("src"));
+	};
+	
+	this.AlbumPlate = AlbumPlate;
+	
+}(document));
+
+
 var selectedAlbumContainer;
 var albumColors;
 var windowWidth = $(window).width();
+var albumPlate = new AlbumPlate($(".album-plate-container"));
+var albumPlateAlt = new AlbumPlate($(".album-plate-container-alt"));	
 
 $(document).ready(function() {
+
 	// resize the height
 	$(".album-container").css("height", function() {
 		return $(this).find(".img-album").width() + 69;
-	});
+	});	
+	
 	// on click function
 	$(".img-album").click(function() { // when album image is selected
 		var albumContainer = $(this).parent().parent();
@@ -17,30 +158,36 @@ $(document).ready(function() {
 			if (selectedAlbumContainer.is(albumContainer)) {
 				unselectAlbum(albumContainer);
 				selectedAlbumContainer = undefined;
-				hideAlbumPlate();
+				albumPlate.hide();
 			} else {
 				unselectAlbum(selectedAlbumContainer);
 				selectAlbum(albumContainer);
 				if(getRowId(albumContainer)==getRowId(selectedAlbumContainer)){
 					selectedAlbumContainer = albumContainer;
-					changeAlbumPlate(albumContainer);
+					albumPlate.change(albumContainer);
 				}else{
-					hideAlbumPlate();
+					albumPlate.hide();
+					albumPlateAlt.show(albumContainer);
+					
+					albumPlate.container.toggleClass("album-plate-container album-plate-container-alt");
+					albumPlateAlt.container.toggleClass("album-plate-container-alt album-plate-container");
+					
+					albumPlate = new AlbumPlate($(".album-plate-container"));
+					albumPlateAlt = new AlbumPlate($(".album-plate-container-alt"));
+					
 					selectedAlbumContainer = albumContainer;
-					showAlbumPlate(albumContainer);
-					//TODO: show alt album plate and switch class
 				}
 			}
 		} else {
 			selectAlbum(albumContainer);
 			selectedAlbumContainer = albumContainer;
-			showAlbumPlate(albumContainer);
+			albumPlate.show(albumContainer);
 		}
 	});
 	$(document).on("click", ".close-button", function() {
 		unselectAlbum(selectedAlbumContainer);
 		selectedAlbumContainer = undefined;
-		hideAlbumPlate();
+		albumPlate.hide();
 	});
 /*
   var numAlbums = $(".img-album").length; 
@@ -80,88 +227,8 @@ function unselectAlbum(albumContainer) {
 	albumContainer.find(".artist-name").removeClass("selected"); // show artist name
 };
 
-// album plate control
-function showAlbumPlate(albumContainer) {
-	var albumPlate = $(".album-plate");
-	var arrow = $(".album-plate-arrow");
-	var arrowCover = $(".album-plate-arrow-cover");
-	moveAlbumPlate(albumContainer);
-	paintAlbumPlate(albumContainer);
-	arrow.css("left", arrowPosition(albumContainer));
-	arrowCover.css("left", arrowPosition(albumContainer)-1);
-	arrow.removeClass("duck");
-	arrow.addClass("open");
-	arrowCover.addClass("open");
-	albumPlate.addClass("open");
-	
-	// lion bars
-	/*$('.album-plate-left-text').lionbars({
-    autohide: true
-	});*/
-};
 
-function hideAlbumPlate() {
-	var albumPlate = $(".album-plate");
-	var arrow = $(".album-plate-arrow");
-	var arrowCover = $(".album-plate-arrow-cover");
-	arrow.removeClass("open");
-	arrowCover.removeClass("open");
-	albumPlate.removeClass("open");
-};
 
-function changeAlbumPlate(albumContainer) {
-	var currentArrow = $(".album-plate-arrow");
-	var altArrow = $(".album-plate-arrow-alt");
-	var arrowCover = $(".album-plate-arrow-cover");
-	// if selectedAlbumContainer and albumContainer are in a same row;
-	paintAlbumPlate(albumContainer);
-	altArrow.css("left", arrowPosition(albumContainer));
-	arrowCover.css("left", arrowPosition(albumContainer)-1);
-	altArrow.removeClass("duck");
-	currentArrow.addClass("duck");
-	currentArrow.toggleClass("album-plate-arrow album-plate-arrow-alt");
-	altArrow.toggleClass("album-plate-arrow-alt album-plate-arrow");
-	// else if selectedAlbumContainer and albumContainer are in different rows;
-	// TODO
-};
-
-function moveAlbumPlate(albumContainer) {
-	var albumPlateContainer = $(".album-plate-container");
-	var albumRow = $(".album-row");
-	// reposition the album plate after the selected row
-	var rowId = getRowId(albumContainer);
-	albumPlateContainer.remove();
-	var rowEnd = albumRow.children()[((rowId + 1) * numAlbumsInRow() * 3 / 2) - 1]; // 3/2: consider clearfix
-	if (rowEnd == undefined) {
-		albumPlateContainer.appendTo(albumRow);
-	}
-	albumPlateContainer.insertAfter(rowEnd);
-}
-
-function paintAlbumPlate(albumContainer) {
-	var image = albumContainer.find(".img-album")
-	var imageSrc = image.attr("src");
-	var albumPlate = $(".album-plate");
-	var id = getId(albumContainer);
-	// change text
-	albumPlate.find(".ap-album-name").text(albumContainer.find(".album-name").text());
-	albumPlate.find(".ap-artist-name").text(albumContainer.find(".artist-name").text());
-	albumPlate.find(".ap-album-review").html(albumContainer.find(".album-review ").html());
-	// chnage image
-	albumPlate.find(".album-plate-img").attr("src", image.attr("src"));
-	// chnage colors
-	albumPlate.css("background-color", 'rgb(' + albumColors[id].bgColor + ')');
-	$(".album-plate-arrow").css("background-color", 'rgb(' + albumColors[id].bgColor + ')');
-	$(".album-plate-arrow-alt").css("background-color", 'rgb(' + albumColors[id].bgColor + ')');
-	albumPlate.find(".album-plate-img-wrap").css("box-shadow", "inset 16px 16px 25px " + 'rgb(' + albumColors[id].bgColor + ')');
-	albumPlate.find(".first-color").css("color", 'rgb(' + albumColors[id].secondaryColor + ')');
-	albumPlate.find(".second-color").css("color", 'rgb(' + albumColors[id].primaryColor + ')');
-}
-
-function arrowPosition(albumContainer) {
-	var albumPlateContainer = $(".album-plate-container");
-	return albumContainer.offset().left + albumContainer.width() / 2 - albumPlateContainer.offset().left - 10;
-}
 // on resize 
 $(window).resize(function() {
 	// only check horizontal resize
@@ -169,11 +236,14 @@ $(window).resize(function() {
 	windowWidth = $(window).width();
 	// repoisition the album-plate-arrow
 	if (selectedAlbumContainer != undefined) {
-		$(".album-plate-arrow").css("left", arrowPosition(selectedAlbumContainer));
+		albumPlate.arrow.css("left", albumPlate.arrowPosition(selectedAlbumContainer));
+		albumPlateAlt.arrow.css("left", albumPlateAlt.arrowPosition(selectedAlbumContainer));
+		albumPlate.arrowCover.css("left", albumPlate.arrowPosition(selectedAlbumContainer));
+		albumPlateAlt.arrowCover.css("left", albumPlateAlt.arrowPosition(selectedAlbumContainer));
 	}
 	// reposition album plate
 	if (selectedAlbumContainer != undefined) {
-		moveAlbumPlate(selectedAlbumContainer);
+		albumPlate.move(selectedAlbumContainer);
 	}
 	// resize the height
 	$(".album-container").css("height", function() {
@@ -187,28 +257,3 @@ $(window).resize(function() {
 		}
 	});*/
 });
-
-function numAlbumsInRow() {
-	var width = $(window).width();
-	if (width < 768) { // Extra small devices Phones (<768px)
-		return 2;
-	} else if (width < 992) { // Small devices Tablets (≥768px)
-		return 4;
-	} else if (width < 1200) { // Medium devices Desktops (≥992px)
-		return 6;
-	} else { // Large devices Desktops (≥1200px)
-		return 6;
-	}
-}
-
-function getRowId(albumContainer) {
-	var numInRow = numAlbumsInRow();
-	//console.log("# albums in a row: " + numAlbumsInRow());
-	var selectedRow = parseInt(albumContainer.parent().index() / (numInRow * 3 / 2)); // 3/2: consider clearfix
-	//console.log("selected row: " + selectedRow);
-	return selectedRow;
-}
-
-function getId(albumContainer) {
-	return parseInt(albumContainer.parent().index() / 3) * 2 + albumContainer.parent().index() % 3;
-}
